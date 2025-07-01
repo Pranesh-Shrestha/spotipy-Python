@@ -61,4 +61,3 @@ jobs:
           api_url: "https://app.invisirisk.com"
           app_token: ${{ secrets.IR_API_KEY }}
           send_job_status: "true"
-�
